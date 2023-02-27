@@ -1,0 +1,366 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "My posts api project",
+        "description": "My User Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "user",
+            "description": "API for users in the system"
+        },
+        {
+            "name": "post",
+            "description": "API for posts in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Add new user to the system",
+                "parameters": [
+                    {
+                        "name": "newUser",
+                        "in": "body",
+                        "default": {
+                            "firstName": {
+                                "example": "Ahmed"
+                            },
+                            "lastName": {
+                                "example": "Ramadan"
+                            },
+                            "email": {
+                                "example": "Ahmed123@yahoo.com"
+                            },
+                            "password": {
+                                "example": "Ahmed@12345"
+                            },
+                            "gender": {
+                                "example": [
+                                    "male",
+                                    "female"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "One user added successfully",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Make the permission to the user to can access (login) the system",
+                "parameters": [
+                    {
+                        "name": "user login",
+                        "in": "body",
+                        "default": {
+                            "email": {
+                                "example": "Ahmed123@yahoo.com"
+                            },
+                            "password": {
+                                "example": "Ahmed@12345"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User login successfully",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                }
+            }
+        },
+        "/delete": {
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Delete one user from the system",
+                "parameters": [
+                    {
+                        "name": "delete user by id",
+                        "in": "body",
+                        "default": {
+                            "id": {
+                                "example": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "One user deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                }
+            }
+        },
+        "/update": {
+            "patch": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "update user information on the system",
+                "parameters": [
+                    {
+                        "name": "user update",
+                        "in": "body",
+                        "default": {
+                            "id": {
+                                "example": "1"
+                            },
+                            "firstName": {
+                                "example": "Ahmed"
+                            },
+                            "lastName": {
+                                "example": "Ramadan"
+                            },
+                            "email": {
+                                "example": "Ahmed123@yahoo.com"
+                            },
+                            "password": {
+                                "example": "Ahmed@12345"
+                            },
+                            "gender": {
+                                "example": [
+                                    "male",
+                                    "female"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "One user updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                }
+            }
+        },
+        "/allPosts": {
+            "get": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "load all posts from the database",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "load all posts successfully",
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                }
+            }
+        },
+        "/deletePost": {
+            "delete": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "delete post by id from the system",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "body",
+                        "default": {
+                            "id": {
+                                "example": "4"
+                            }
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "delete post successfully",
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                }
+            }
+        },
+        "/myPosts": {
+            "get": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "load all my posts",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get my posts successfully",
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                }
+            }
+        },
+        "/post": {
+            "post": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "Add new post to the system",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "body",
+                        "default": {
+                            "post": {
+                                "example": "this is new post"
+                            }
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "One post added successfully",
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                }
+            }
+        },
+        "/updatePost": {
+            "patch": {
+                "tags": [
+                    "post"
+                ],
+                "summary": "update post by given id",
+                "parameters": [
+                    {
+                        "name": "update post",
+                        "in": "body",
+                        "default": {
+                            "id": {
+                                "example": "8"
+                            },
+                            "post": {
+                                "example": "this is the new post , the new post will replace the old post"
+                            }
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "post updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                }
+            }
+        },
+        "post": {
+            "required": [
+                "_id",
+                "post"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "userId": {
+                    "type": "integer"
+                },
+                "post": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
